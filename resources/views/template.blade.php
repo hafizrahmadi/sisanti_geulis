@@ -387,6 +387,7 @@
                   <li><a href="#"><i class="fa fa-inbox"></i> <span>Inbox</span></a></li>
                   <li><a href="#"><i class="fa fa-send-o"></i> <span>Outbox</span></a></li>
                   <li><a href="#"><i class="fa fa-bell"></i> <span>Notification</span></a></li>
+                  <li><a href="{{url('/login')}}"><i class="fa fa-lock"></i> <span>Login</span></a></li>
               <!-- </form> -->
 
 
