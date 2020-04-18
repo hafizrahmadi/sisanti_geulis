@@ -11,16 +11,28 @@
 |
 */
 
-Route::get('/', function () {
+
+Route::get('/', 'UserController@index');
+
+Route::get('/logout', 'UserController@logout');
+Route::get('/login',function(){
+	return redirect('/');
+});
+Route::post('/loginpost','UserController@loginPost');
+
+Route::get('/home', function () {
     // return view('welcome');
-	return view('content');
+	return view('home/home');
 });
 
-Route::get('/login', function () {
-    // return view('welcome');
-	return view('login');
+
+
+
+Route::get('/masteruser',function(){
+	return view('home/masteruser');
 });
 
-// Route::get('/aaa',function(){
-// 	return view('content');
-// });
+
+Route::get('getlistuser','UserController@getListUser');
+Route::post('/adduserpost', 'UserController@addUserPost');
+Route::post('/deleteuser', 'UserController@deleteUser');

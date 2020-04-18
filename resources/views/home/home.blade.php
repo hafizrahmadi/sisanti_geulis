@@ -1,4 +1,4 @@
-@extends('template')
+@extends('home.template')
 
 @section('content-header')
  <h1>

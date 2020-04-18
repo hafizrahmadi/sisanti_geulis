@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="{{asset('file_assets/adminlte/dist/css/AdminLTE.css')}}">
 
   <link rel="stylesheet" type="text/css" href="{{asset('file_assets/mylogin/css/my-login.css')}}">
-<link rel="shortcut icon" href="{{asset('file_assets/img/logo_kejari.png')}}">
+<link rel="shortcut icon" href="{{asset('file_assets/img/logo_pemkab_bogor.png') }}">
   <style type="text/css">
 
   body{
@@ -77,7 +77,13 @@
           <div class="card fat">
             <div class="card-body">
               <h4 style="" class="card-title text-center">Login SISANTI GEULIS</h4>
-              <form method="POST" id="form-login" action="#">
+              <form method="POST" id="form-login" action="{{url('/loginpost')}}">
+                {{ csrf_field() }}
+                @if(\Session::has('alert'))
+                    <div class="alert alert-danger">
+                        <div>{{Session::get('alert')}}</div>
+                    </div>
+                @endif
                 <div class="form-group">
                   <label for="username">Username</label>
                   <input id="username" type="text" class="form-control" name="username" value="" required autofocus>

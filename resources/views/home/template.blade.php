@@ -343,7 +343,7 @@
               <li class="dropdown user user-menu ">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="{{asset('file_assets/img/user.png')}}" class="user-image" alt="User Image">
-                  <span class="hidden-xs" id="user-name">User</span>
+                  <span class="hidden-xs" id="user-name">{{session('username')}}</span>
                 </a>
                 <ul class="dropdown-menu">
                       <!-- User image -->
@@ -351,18 +351,18 @@
                         <img src="{{asset('file_assets/img/user.png')}}" class="img-circle" alt="User Image">
 
                         <p id="user-name-detail">
-                          User
+                          {{session('username')}}
                         </p>
                       </li>
                       <!-- Menu Footer-->
                       <li class="user-footer">
 
                         <div class="pull-left">
-                          <a href="#" class="btn btn-default btn-flat"><i class="fa fa-home"></i> Home</a>
+                          <!-- <a href="" class="btn btn-default btn-flat"><i class="fa fa-home"></i> Home</a> -->
                         </div>
                         
                         <div class="pull-right">
-                            <a href="javascript:logoutConfirm();" class="btn btn-default btn-flat"><i class="fa fa-sign-out"></i> Sign out</a>
+                            <a href="{{url('/logout')}}" class="btn btn-default btn-flat"><i class="fa fa-sign-out"></i> Sign out</a>
                         </div>
 
                       </li>
@@ -387,7 +387,8 @@
                   <li><a href="#"><i class="fa fa-inbox"></i> <span>Inbox</span></a></li>
                   <li><a href="#"><i class="fa fa-send-o"></i> <span>Outbox</span></a></li>
                   <li><a href="#"><i class="fa fa-bell"></i> <span>Notification</span></a></li>
-                  <li><a href="{{url('/login')}}"><i class="fa fa-lock"></i> <span>Login</span></a></li>
+                  <li><a href="{{url('/masteruser')}}"><i class="fa fa-user"></i> <span>Master User</span></a></li>
+                  <!-- <li><a href="{{url('/login')}}"><i class="fa fa-lock"></i> <span>Login</span></a></li> -->
               <!-- </form> -->
 
 
@@ -407,8 +408,10 @@
         @yield('content')
     </section>
 
+    @yield('outside-content')
     <!-- /.content -->
   </div>
+
   <!-- /.content-wrapper -->
   <footer class="main-footer text-sm" style="padding:5px 15px;">
     <div class="pull-left hidden-xs">
@@ -421,6 +424,6 @@
 
 
 </div>
-
+@yield('script')
 </body>
 </html>
