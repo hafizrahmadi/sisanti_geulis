@@ -14,7 +14,7 @@
             <h3 class="box-title">Master User</h3>
             <div class="box-tools pull-right">
                 <!-- <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button> -->
-                <a href="javascript:modalForm('Tambah User','','');"><button class="btn btn-sm btn-success"><i class="fa fa-pencil-square-o" style=""></i> Tambah User</button></a>
+                <a href="javascript:modalForm('Tambah User','','');"><button class="btn btn-sm btn-teal"><i class="fa fa-pencil-square-o" style=""></i> Tambah User</button></a>
             </div>
         </div>
         <div class="box-body">
@@ -84,7 +84,7 @@
             </div>
             <div class="modal-footer">
                <!-- <button type="button" class="btn btn-sm btn-default" title="Reset" id="appendix1_reset"><i class="fa fa-undo"></i></button> -->
-               <button type="button" class="btn btn-sm btn-success" title="Save" id="btn_save"><i class="fa fa-save"></i></button>
+               <button type="button" class="btn btn-sm btn-teal" title="Save" id="btn_save"><i class="fa fa-save"></i></button>
             </div>
          </div>
       </div>
@@ -186,10 +186,10 @@
                                 '<td class="text-center">'+
                                       '<div class="btn-group" >'+
                                        '<a href="javascript:modalForm(\'Edit User\',\''+(i+1)+'\',\''+dt[i].id+'\')">'+
-                                       '<button class="btn btn-xs btn-success" title="Edit"><i class="fa fa-pencil" style=""></i></button>'+
+                                       '<button class="btn btn-xs btn-teal" title="Edit"><i class="fa fa-pencil" style=""></i></button>'+
                                        '</a>&nbsp;'+
                                        '<a href="javascript:deleteUser('+dt[i].id+')"  onclick="return conf();">'+
-                                       '<button class="btn btn-xs btn-success" title="Delete"><i class="fa fa-trash-o" style=""></i></button>'+
+                                       '<button class="btn btn-xs btn-teal" title="Delete"><i class="fa fa-trash-o" style=""></i></button>'+
                                        '</a>'+
                                       '</div>'+
                                   '</td>'+

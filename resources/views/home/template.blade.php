@@ -252,6 +252,36 @@
         width: 400px !important;
     }
 
+    .btn-teal {
+      color: #ffffff;
+      background-color: #0AB690;
+      border-color: #0AB690;
+      box-shadow: none;
+    }
+
+    .btn-teal:hover {
+        background-color: #09A281;
+        border-color: #09A281;
+        color: #ffffff;
+    }
+
+    /*paginasi datatables*/
+    .pagination>.active>a {
+        color: #ffffff;
+        background-color: #0AB690;
+        border-color: #0AB690;
+    }
+
+    .pagination>.active>a:hover {
+        color: #ffffff;
+        background-color: #09A281;
+        border-color: #09A281;
+    }
+
+    .pagination > a {
+        color: #0AB690;
+        background-color: #ffffff;
+    }
 
 </style>
 <link rel="stylesheet" href="{{asset('file_assets/adminlte/bower_components/datatables.net-bs/css/dataTables.bootstrap.css') }}">
@@ -263,7 +293,7 @@
 
 </head>
 
-<body id="body" class="hold-transition skin-green sidebar fixed">
+<body id="body" class="hold-transition skin-teal sidebar fixed">
     <div class="wrapper">
 
      <header class="main-header">
@@ -273,7 +303,7 @@
           <span class="logo-mini"><b>SG</b></span>
           <!-- logo for regular state and mobile devices -->
 
-          <span class="logo-lg" style="letter-spacing: 1px; font-size:20px;"><img src="{{asset('file_assets/img/logo_pemkab_bogor.png')}}" style="height: 30px;"> SISANTI GEULIS</span>
+          <span class="logo-lg" style="letter-spacing: 1px; font-size:20px;"><img src="{{asset('file_assets/img/logo_sisanti_geulis_landscape2.png')}}" style="height: 50px;"> </span>
         </a>
          <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
