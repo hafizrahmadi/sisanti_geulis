@@ -38,7 +38,7 @@ class UserController extends Controller
                 Session::put('role',$data->role);
                 Session::put('token',$data->token);
                 Session::put('login',TRUE);
-                return redirect('home');
+                return redirect('home')->with('alert','Halo '.session('username').' ! Selamat bekerja sama dengan SISANTI GEULIS :)');
             }
             else{
                 return redirect('/')->with('alert','Username atau Password, Salah !');

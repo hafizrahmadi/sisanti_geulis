@@ -33,3 +33,11 @@
         <!-- /.box-footer-->
       </div>
 @endsection
+
+@section('script')
+  @if(\Session::has('alert'))
+                    <script type="text/javascript">
+                      alert("{{Session::get('alert')}}");
+                    </script>
+  @endif
+@endsection
