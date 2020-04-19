@@ -14,16 +14,16 @@
   <style type="text/css">
 
   body{
-
+    background: #0AB690 !important;
   }
 
     .my-login-page .brand {
-        width: 130px;
+        /*width: 130px;*/
         /* height: 90px; */
-        overflow: hidden;
+        /*overflow: hidden;*/
         /* border-radius: 50%; */
         /* margin: 0 auto; */
-        margin: 50px auto;
+        margin: 60px auto;
         /* box-shadow: 0 0 40px rgba(0,0,0,.05); */
 
     }
@@ -50,20 +50,33 @@
     }
 
     .form-control:focus {
-      border-color: #00a65a;
+      border-color: #0AB690;
       box-shadow: none;
     }
 
-    /*.my-login-page .footer {
+    .my-login-page .footer {
 
       color: #fff !important;
-      text-shadow:
+      /*text-shadow:
        3px 3px 0 #000, 
     -1px -1px 0 #000,
      1px -1px 0 #000,
      -1px 1px 0 #000,
-      1px 1px 0 #000;
-  }*/
+      1px 1px 0 #000;*/
+  }
+
+  .btn-teal {
+      color: #ffffff;
+      background-color: #0AB690;
+      border-color: #0AB690;
+      box-shadow: none;
+    }
+
+    .btn-teal:hover {
+        background-color: #09A281;
+        border-color: #09A281;
+        color: #ffffff;
+    }
   </style>
 </head>
 <body class="my-login-page">
@@ -72,7 +85,7 @@
       <div class="row justify-content-md-center h-100">
         <div class="card-wrapper">
           <div class="brand">
-            <img src="{{asset('file_assets/img/logo_pemkab_bogor.png')}}">
+            <img src="{{asset('file_assets/img/logo_sisanti_geulis_landscape.png')}}" style="height: 100px; width: auto; display: block; margin: auto">
           </div>
           <div class="card fat">
             <div class="card-body">
@@ -94,7 +107,7 @@
                   <input id="password" type="password" class="form-control" name="password" required data-eye>
                 </div>
                 <div class="form-group no-margin">
-                  <button type="submit" id="input-submit" class="btn bg-green btn-block" style="cursor: pointer;">
+                  <button type="submit" id="input-submit" class="btn btn-teal btn-block" style="cursor: pointer;">
                     Login
                   </button>
                 </div>
