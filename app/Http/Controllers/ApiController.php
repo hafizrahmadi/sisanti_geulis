@@ -20,6 +20,7 @@ class ApiController extends Controller
 
     $username = $request->username;
     $password = $request->password;
+    $firebase = $request->firebase;
 
 
     $data = ModelUser::where('username',$username)->first();
@@ -28,11 +29,13 @@ class ApiController extends Controller
         if ($password==$data->password) {
           $data->forceFill([
             'token' => $token,
+            'firebase' => $firebase
           ])->update();
 
           return [
             'status' => 'Success',
-            'token' => $token
+            'token' => $token,
+            'firebase' => $firebase
           ];
 
         }
@@ -43,7 +46,6 @@ class ApiController extends Controller
   }
 
   public function profile($id) {
-    
     $data = ModelUser::where('id',$id)->first();
     return [
       'data' => $data
