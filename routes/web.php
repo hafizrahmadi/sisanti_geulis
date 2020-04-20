@@ -36,3 +36,4 @@ Route::get('/masteruser',function(){
 Route::get('getlistuser','UserController@getListUser');
 Route::post('/adduserpost', 'UserController@addUserPost');
 Route::post('/deleteuser', 'UserController@deleteUser');
+Route::get('getlistjabatan','UserController@getListJabatan');

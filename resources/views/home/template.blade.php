@@ -284,6 +284,7 @@
     }
 
 </style>
+@yield('css')
 <link rel="stylesheet" href="{{asset('file_assets/adminlte/bower_components/datatables.net-bs/css/dataTables.bootstrap.css') }}">
 <!-- DataTables -->
 <script src="{{asset('file_assets/adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>

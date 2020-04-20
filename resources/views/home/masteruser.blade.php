@@ -1,5 +1,14 @@
 @extends('home.template')
-
+@section('css')
+<style type="text/css">
+  .td_limit {
+     max-width: 50px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+  }
+</style>
+@endsection
 @section('content-header')
     <h1>Master User</h1>
       <ol class="breadcrumb">
@@ -23,8 +32,13 @@
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>ID User</th>
+                        <!-- <th>ID User</th> -->
                         <th>Username</th>
+                        <th>NPK</th>
+                        <th>Nama Lengkap</th>
+                        <th>Pangkat</th>
+                        <th>Golongan</th>
+                        <th>Jabatan</th>
                         <th>Role</th>
                         <th>Token</th>
                         <th class="no-sort">Aksi</th>
@@ -70,13 +84,13 @@
                </div>
 
                <div class="form-group">
-                  <label>NPK Karyawan</label>
+                  <label>NPK</label>
                   <input type="text" name="npk" class="form-control" id="npk" placeholder="NPK">
                </div>
 
                <div class="form-group">
-                  <label>Nama Karyawan</label>
-                  <input type="text" name="nama_karyawan" class="form-control" id="nama_karyawan" placeholder="nama_karyawan">
+                  <label>Nama Lengkap</label>
+                  <input type="text" name="nama_lengkap" class="form-control" id="nama_lengkap" placeholder="Nama Lengkap">
                </div>
 
                <div class="form-group">
@@ -86,12 +100,14 @@
 
                <div class="form-group">
                   <label>Golongan</label>
-                  <input type="text" name="golongan" class="form-control" id="golongan" placeholder="golongan">
+                  <input type="text" name="golongan" class="form-control" id="golongan" placeholder="Golongan">
                </div>
 
                <div class="form-group">
                   <label>Jabatan</label>
-                  <input type="text" name="jabatan" class="form-control" id="jabatan" placeholder="Jabatan">
+                  <select class="form-control" name="jabatan" id="jabatan">
+                    
+                  </select>
                </div>
 
 
@@ -130,6 +146,7 @@
     var tablex = null;
     $(document).ready(function() {
         getListUser();
+        getListJabatan();
         $("#conf_password").keyup(validate);
     });
 
@@ -154,6 +171,11 @@
         $('#username').val("");
         $('#password').val("");
         $('#conf_password').val("");
+        $('#npk').val("");
+        $('#nama_lengkap').val("");
+        $('#pangkat').val("");
+        $('#golongan').val("");
+        $('#jabatan').val("");
         $('#role').val("");
         $('#id_user').val("");
         $('#modal_title').html(title);
@@ -172,10 +194,15 @@
         //   $('#keterangan').val($('#keterangan_'+index).html());
         // }
         if (id!='') {
-            $('#username').val($('#username_'+index).html());
+            $('#username').val($('#username_'+index).attr('data-val'));
             $('#password').val($("#username_"+index).attr('data-pass'));
             $('#conf_password').val($("#username_"+index).attr('data-pass'));
-            $('#role').val($('#role_'+index).html());
+            $('#npk').val($('#npk_'+index).attr('data-val'));
+            $('#nama_lengkap').val($('#nama_lengkap_'+index).attr('data-val'));
+            $('#pangkat').val($('#pangkat_'+index).attr('data-val'));
+            $('#golongan').val($('#golongan_'+index).attr('data-val'));
+            $('#jabatan').val($('#jabatan_'+index).attr('data-val'));
+            $('#role').val($('#role_'+index).attr('data-val'));
             $('#id_user').val(id);
         }
         $('#btn_save').attr('onclick', 'modalSave()');
@@ -206,10 +233,15 @@
                   for (var i = 0; i < dt.length; i++) {
                     content+='<tr>'+
                                 '<td>'+(i+1)+'</td>'+
-                                '<td id="id_user_'+(i+1)+'" data-val="'+dt[i].id+'">'+dt[i].id+'</td>'+
+                                // '<td id="id_user_'+(i+1)+'" data-val="'+dt[i].id+'">'+dt[i].id+'</td>'+
                                 '<td id="username_'+(i+1)+'" data-val="'+dt[i].username+'" data-pass="'+dt[i].password+'">'+dt[i].username+'</td>'+
+                                '<td id="npk_'+(i+1)+'" data-val="'+dt[i].npk+'">'+dt[i].npk+'</td>'+
+                                '<td id="nama_lengkap_'+(i+1)+'" data-val="'+dt[i].nama_lengkap+'">'+dt[i].nama_lengkap+'</td>'+
+                                '<td id="pangkat_'+(i+1)+'" data-val="'+dt[i].pangkat+'">'+dt[i].pangkat+'</td>'+
+                                '<td id="golongan_'+(i+1)+'" data-val="'+dt[i].golongan+'">'+dt[i].golongan+'</td>'+
+                                '<td id="jabatan_'+(i+1)+'" data-val="'+dt[i].jabatan+'">'+dt[i].nama_jabatan+'</td>'+
                                 '<td id="role_'+(i+1)+'" data-val="'+dt[i].role+'">'+dt[i].role+'</td>'+
-                                '<td id="token_'+(i+1)+'" data-val="'+dt[i].token+'">'+dt[i].token+'</td>'+
+                                '<td class="td_limit" id="token_'+(i+1)+'" data-val="'+dt[i].token+'">'+dt[i].token+'</td>'+
                                 '<td class="text-center">'+
                                       '<div class="btn-group" >'+
                                        '<a href="javascript:modalForm(\'Edit User\',\''+(i+1)+'\',\''+dt[i].id+'\')">'+
@@ -228,7 +260,7 @@
 
                   tablex = $('#tablex').DataTable({
                       "columnDefs": [
-                      { "targets": 5, "orderable": false}
+                      { "targets": 9, "orderable": false}
                     ]
                     // "paging": true,
                     // "lengthChange": false,
@@ -243,7 +275,7 @@
                 error: function() {
                     alert("Memproses data gagal !");
                 }
-            });``
+            });
   }
 
   function modalSave(){
@@ -251,8 +283,13 @@
     var username = $('#username').val();
     var password = $('#password').val();
     var conf_password = $('#conf_password').val();
+    var npk = $('#npk').val();
+    var nama_lengkap = $('#nama_lengkap').val();
+    var pangkat = $('#pangkat').val();
+    var golongan = $('#golongan').val();
+    var jabatan = $('#jabatan').val();
     var role = $('#role').val();
-    if (username!=''&&password!=''&&conf_password!=''&&role!='') {
+    if (username!=''&&password!=''&&conf_password!=''&&role!=''&&npk!=''&&nama_lengkap!=''&&pangkat!=''&&golongan!=''&&jabatan!='') {
         $.ajax({
                url: "{{url('/adduserpost')}}",
                type: "POST",
@@ -262,6 +299,11 @@
                   'username': username,
                   'password': password,
                   'conf_password': conf_password,
+                  'npk': npk,
+                  'nama_lengkap': nama_lengkap,
+                  'pangkat': pangkat,
+                  'golongan': golongan,
+                  'jabatan': jabatan,
                   'role': role,
                },
                beforeSend: function() {
@@ -271,6 +313,11 @@
                   'username': username,
                   'password': password,
                   'conf_password': conf_password,
+                  'npk': npk,
+                  'nama_lengkap': nama_lengkap,
+                  'pangkat': pangkat,
+                  'golongan': golongan,
+                  'jabatan': jabatan,
                   'role': role,
                  });
                  if (id_user=='') {
@@ -293,6 +340,11 @@
                         $('#username').val("");
                         $('#password').val("");
                         $('#conf_password').val("");
+                        $('#npk').val("");
+                        $('#nama_lengkap').val("");
+                        $('#pangkat').val("");
+                        $('#golongan').val("");
+                        $('#jabatan').val("");
                         $('#role').val("");
                         $('#modal').modal('hide');
                     }else{
@@ -310,6 +362,40 @@
         alert('Lengkapi form!');
     }
 
+  }
+
+  function getListJabatan(){
+    $('#jabatan').html("");
+    $.ajax({
+                url: "{{url('/getlistjabatan')}}",
+                type: "GET",
+                data: {
+                },
+                beforeSend: function() {
+                  // console.log(tablex);
+
+                  
+                },
+                success: function(data) {
+                  dt = JSON.parse(data);
+
+
+                  console.log(dt);
+                  content = '';
+                  content+='<option value="">Pilih Jabatan</option>';
+                  for (var i = 0; i < dt.length; i++) {
+                    content+='<option value="'+dt[i].id+'">'+dt[i].nama_jabatan+'</option>';
+                  }
+                  $('#jabatan').html(content);
+                },
+                complete: function() {
+
+                 
+                },
+                error: function() {
+                    alert("Memproses data list jabatan gagal !");
+                }
+            });
   }
 
   function deleteUser(id){

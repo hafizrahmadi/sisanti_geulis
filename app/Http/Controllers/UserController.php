@@ -59,8 +59,8 @@ class UserController extends Controller
     }
 
     public function getListUser(){
-        // $sel = DB::connection('mysql')->select("SELECT * from tb_user");
-        $sel = ModelUser::all();
+        $sel = DB::connection('mysql')->select("SELECT a.id,a.username,a.password,a.npk,a.nama_lengkap,a.pangkat,a.golongan,a.jabatan,a.role,a.token,a.firebase,b.nama_jabatan from tb_user a left join tb_jabatan b on a.jabatan = b.id order by 1 asc;");
+        // $sel = ModelUser::all();
         return json_encode($sel);
     }
 
@@ -77,13 +77,18 @@ class UserController extends Controller
             $data =  new ModelUser();
             $data->username = $request->username;
             $data->password = $request->password;
+            $data->npk = $request->npk;
+            $data->nama_lengkap = $request->nama_lengkap;
+            $data->pangkat = $request->pangkat;
+            $data->golongan = $request->golongan;
+            $data->jabatan = $request->jabatan;
             $data->role = $request->role;
             $data->token = "-"; //sementara
             // $data->password = bcrypt($request->password);
             // $data->password = $request->password;
             return json_encode($data->save());
         }else{
-            $xx = ModelUser::where('id',$request->id_user)->update(['username'=>$request->username,'password'=>$request->password,'role'=>$request->role]);
+            $xx = ModelUser::where('id',$request->id_user)->update(['username'=>$request->username,'password'=>$request->password,'npk'=>$request->npk,'nama_lengkap'=>$request->nama_lengkap,'pangkat'=>$request->pangkat,'golongan'=>$request->golongan,'jabatan'=>$request->jabatan,'role'=>$request->role]);
             return json_encode($xx);
         }
 
@@ -95,5 +100,10 @@ class UserController extends Controller
     $data = ModelUser::find($request->id);
 
     return json_encode($data->delete());
+    }
+
+    public function getListJabatan(){
+        $sel = DB::connection('mysql')->select("SELECT * from tb_jabatan;");
+        return json_encode($sel);
     }
 }
