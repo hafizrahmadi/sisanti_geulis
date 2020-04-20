@@ -86,7 +86,7 @@ class UserController extends Controller
             $xx = ModelUser::where('id',$request->id_user)->update(['username'=>$request->username,'password'=>$request->password,'role'=>$request->role]);
             return json_encode($xx);
         }
-        
+
 
         // return redirect('login')->with('alert-success','Kamu berhasil Register');
     }

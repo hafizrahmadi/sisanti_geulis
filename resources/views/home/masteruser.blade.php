@@ -34,7 +34,7 @@
                 </tbody>
             </table>
             </div><!-- /.box-body -->
-        
+
         </div>
         <div class="overlay div_loading" id="loading"><i class="fa fa-refresh fa-spin"></i></div>
         <!-- <div class="box-footer">
@@ -68,6 +68,33 @@
                   <input type="password" name="conf_password" class="form-control" id="conf_password" placeholder="Konfirmasi Password">
                   <span class="help-block" id="msg-conf_password"></span>
                </div>
+
+               <div class="form-group">
+                  <label>NPK Karyawan</label>
+                  <input type="text" name="npk" class="form-control" id="npk" placeholder="NPK">
+               </div>
+
+               <div class="form-group">
+                  <label>Nama Karyawan</label>
+                  <input type="text" name="nama_karyawan" class="form-control" id="nama_karyawan" placeholder="nama_karyawan">
+               </div>
+
+               <div class="form-group">
+                  <label>Pangkat</label>
+                  <input type="text" name="pangkat" class="form-control" id="pangkat" placeholder="Pangkat">
+               </div>
+
+               <div class="form-group">
+                  <label>Golongan</label>
+                  <input type="text" name="golongan" class="form-control" id="golongan" placeholder="golongan">
+               </div>
+
+               <div class="form-group">
+                  <label>Jabatan</label>
+                  <input type="text" name="jabatan" class="form-control" id="jabatan" placeholder="Jabatan">
+               </div>
+
+
                <div class="form-group">
                   <label>Role</label>
                   <select class="form-control" name="role" id="role">
@@ -110,17 +137,17 @@
       var password1 = $("#password").val();
       var password2 = $("#conf_password").val();
 
-        
-     
+
+
         if(password1 == password2) {
-           $("#group-conf_password").removeClass("has-error").addClass("has-success");        
+           $("#group-conf_password").removeClass("has-error").addClass("has-success");
            $('#msg-conf_password').html("Password sama.");
         } else {
-           $("#group-conf_password").addClass("has-error").removeClass('has-success');        
+           $("#group-conf_password").addClass("has-error").removeClass('has-success');
            $('#msg-conf_password').html("Password harus sama!");
-            
+
         }
-        
+
     }
 
     function modalForm(title,index,id){
@@ -172,7 +199,7 @@
                 },
                 success: function(data) {
                   dt = JSON.parse(data);
-                  
+
 
                   console.log(dt);
                   content = '';
@@ -261,7 +288,7 @@
                         }else{
                             alert('User berhasil ditambahkan!');
                         }
-                        
+
                         $('#id_user').val("");
                         $('#username').val("");
                         $('#password').val("");
@@ -282,7 +309,7 @@
     }else{
         alert('Lengkapi form!');
     }
-    
+
   }
 
   function deleteUser(id){
@@ -298,9 +325,9 @@
                    _token: '{{csrf_token()}}',
                   'id': id,
                  });
-                 
+
                 console.log('Delete user : '+id);
-                 
+
 
                },
                success: function(data) {
