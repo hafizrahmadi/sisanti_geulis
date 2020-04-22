@@ -20,3 +20,4 @@ use Illuminate\Http\Request;
 
 Route::post('/signin', 'ApiController@signin');
 Route::get('/profile/{id}', 'ApiController@profile');
+Route::post('/send_notif', 'ApiController@sendNotif');
